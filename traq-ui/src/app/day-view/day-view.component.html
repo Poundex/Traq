@@ -1,0 +1,25 @@
+<form>
+	<label for="date">Date</label>
+	<input type="date" id="date" name="date" [ngModel]="date | date:'yyyy-MM-dd'" />
+</form>
+
+<table class="table">
+	<tr>
+		<th class="col-2">Time</th>
+		<th class="col-1"></th>
+		<th class="col">Description</th>
+	</tr>
+	<tr *ngFor="let datum of data">
+		<td>
+			{{ datum.startTime }}
+			<ng-container *ngIf="datum.endTime">
+				&mdash; {{ datum.endTime }}
+			</ng-container></td>
+		<td>
+			<ng-container *ngIf="datum.durataion">
+				{{ datum.duration }}
+			</ng-container>
+		</td>
+		<td>{{ datum.description }}</td>
+	</tr>
+</table>
