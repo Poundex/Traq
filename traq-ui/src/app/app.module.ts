@@ -10,11 +10,21 @@ import {HttpClientModule} from "@angular/common/http";
 import {DataService} from "./data.service";
 import { DayViewComponent } from './day-view/day-view.component';
 import {AngularFontAwesomeModule} from "angular-font-awesome";
+import { DurationPipe } from './duration.pipe';
+import { AddSpanFormComponent } from './add-span-form/add-span-form.component';
+import { AddPointFormComponent } from './add-point-form/add-point-form.component';
+import { AddEventFormComponent } from './add-event-form/add-event-form.component';
+import { FeatherIconComponent } from './feather-icon/feather-icon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DayViewComponent
+    DayViewComponent,
+    DurationPipe,
+    AddSpanFormComponent,
+    AddPointFormComponent,
+    AddEventFormComponent,
+    FeatherIconComponent
   ],
   imports: [
     BrowserModule,

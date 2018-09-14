@@ -1,8 +1,11 @@
-<form>
-	<label for="date">Date</label>
-	<input type="date" id="date" name="date" [ngModel]="date | date:'yyyy-MM-dd'" />
-</form>
-
+<div class="row justify-content-center">
+	<form class="d-flex justify-content-center">
+		<icon iconName="arrow-left" size=32 [routerLink]="['/day', minusOneDaysAgo]"></icon>
+		<input class="form-control" type="date" id="date" name="date" [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="onDateChanged($event)" #dayChooser/>
+		<icon iconName="arrow-right" size=32 [routerLink]="['/day', plusOneDay]"></icon>
+	</form>
+</div>
+<br>
 <table class="table">
 	<tr>
 		<th class="col-2">Time</th>
@@ -14,12 +17,32 @@
 			{{ datum.startTime }}
 			<ng-container *ngIf="datum.endTime">
 				&mdash; {{ datum.endTime }}
-			</ng-container></td>
-		<td>
-			<ng-container *ngIf="datum.durataion">
-				{{ datum.duration }}
 			</ng-container>
+		</td>
+		<td>
+			<ng-container *ngIf="datum.hasOwnProperty('duration'); then duration; else point">
+			</ng-container>
+			<ng-template #duration>
+				<icon iconName="watch"></icon>
+				<ng-container *ngIf="datum.endTime; then done; else inProgress"></ng-container>
+				<ng-template #done>
+					{{ datum.duration | duration }}
+				</ng-template>
+				<ng-template #inProgress>
+					<mark>
+						<!--{{ datum | json }}-->
+						{{ datum.duration | duration }}
+					</mark>
+				</ng-template>
+			</ng-template>
+			<ng-template #point>
+				<icon iconName="info"></icon>
+			</ng-template>
 		</td>
 		<td>{{ datum.description }}</td>
 	</tr>
 </table>
+
+
+<button class="btn btn-primary" [routerLink]="['/addSpan', date.toISOString().substr(0, 10)]">Add Span</button>
+<button class="btn btn-primary" [routerLink]="['/addPoint', date.toISOString().substr(0, 10)]">Add Point</button>

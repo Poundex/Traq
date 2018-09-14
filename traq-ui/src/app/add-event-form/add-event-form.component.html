@@ -1,0 +1,20 @@
+<form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+	<div class="form-group">
+		<label for="eventdate">Date</label>
+		<input type="date" class="form-control" id="eventdate" name="eventdate" [ngModel]="timelineEvent.date | date:'yyyy-MM-dd'" required>
+	</div>
+	<div class="form-group">
+		<label for="eventstarttime">Start Time</label>
+		<input type="time" class="form-control" id="eventstarttime" name="eventstarttime" [(ngModel)]="timelineEvent.startTime"
+			   required>
+	</div>
+	<div class="form-group" *ngIf="span">
+		<label for="eventendtime">End Time</label>
+		<input type="time" class="form-control" id="eventendtime" name="eventendtime" [(ngModel)]="timelineEvent.endTime">
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<textarea id="description" name="description" class="form-control" [(ngModel)]="timelineEvent.description" required></textarea>
+	</div>
+	<button type="submit" class="btn btn-primary" [disabled]=" ! eventForm.valid">Submit</button>
+</form>

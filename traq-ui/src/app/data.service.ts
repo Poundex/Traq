@@ -5,15 +5,22 @@ import {Observable} from 'rxjs';
 import {TimelineEvent} from "./timeline-event";
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
-export class DataService implements Resolve<Array<TimelineEvent>> {
+export class DataService implements Resolve<Array<TimelineEvent>>
+{
+	constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) { }
+	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Array<TimelineEvent>>
+	{
+		return this.http.get<Array<TimelineEvent>>("http://localhost:8080/event", {
+			params: { date: route.paramMap.get("date") }
+		});
+	}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Array<TimelineEvent>> {
-    return this.http.get<Array<TimelineEvent>>("http://localhost:8080/event");
-  }
-
-
+	saveEvent(event: TimelineEvent, span: boolean): Observable<any>
+	{
+		// console.log(event);
+		return this.http.post("http://localhost:8080/ " + (span ? "span" : "point"), event);
+	}
 }

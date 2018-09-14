@@ -1,9 +1,9 @@
 
 export interface TimelineEvent {
-	id: number;
+	id?: number;
 	date;
 	description: string;
 	startTime;
 	endTime?;
-	duration?;
+	duration?: number;
 }
