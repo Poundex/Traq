@@ -22,6 +22,6 @@ class EventController extends RestfulController<TimelineEvent>
 	def index()
 	{
 		LocalDate date = ! params['date'] || params['date'] == "today" ? LocalDate.now() : LocalDate.parse(params['date'])
-		respond dtoService.toDtos(TimelineEvent.findAllByDate(date))
+		respond dtoService.toDtos(TimelineEvent.findAll())
 	}
 }
