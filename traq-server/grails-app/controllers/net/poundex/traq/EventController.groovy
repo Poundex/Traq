@@ -14,7 +14,7 @@ class EventController extends RestfulController<TimelineEvent>
 
 	EventController(DtoService dtoService)
 	{
-		super(TimelineEvent)
+		super(TimelineEvent, true)
 		this.dtoService = dtoService
 	}
 
