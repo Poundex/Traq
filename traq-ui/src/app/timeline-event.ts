@@ -6,4 +6,11 @@ export interface TimelineEvent {
 	startTime;
 	endTime?;
 	duration?: number;
+	tags: Array<Tag>;
+}
+
+export interface Tag
+{
+	name: string;
+	description?: string;
 }

@@ -1,0 +1,11 @@
+<ng-template #tipContent>
+	<strong>{{ tag.name }}</strong>
+	<ng-container *ngIf="tag.description">
+		<br>
+		{{ tag.description }}
+	</ng-container>
+</ng-template>
+
+<span class="tag" [ngbTooltip]="tipContent">
+	{{ asWritten }}
+</span>

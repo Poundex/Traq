@@ -12,26 +12,25 @@
 		<th class="col-1"></th>
 		<th class="col">Description</th>
 	</tr>
-	<tr *ngFor="let datum of data">
+	<tr *ngFor="let event of events">
 		<td>
-			{{ datum.startTime }}
-			<ng-container *ngIf="datum.endTime">
-				&mdash; {{ datum.endTime }}
+			{{ event.startTime }}
+			<ng-container *ngIf="event.endTime">
+				&mdash; {{ event.endTime }}
 			</ng-container>
 		</td>
 		<td>
-			<ng-container *ngIf="datum.hasOwnProperty('duration'); then duration; else point">
+			<ng-container *ngIf="event.hasOwnProperty('duration'); then duration; else point">
 			</ng-container>
 			<ng-template #duration>
 				<icon iconName="watch"></icon>
-				<ng-container *ngIf="datum.endTime; then done; else inProgress"></ng-container>
+				<ng-container *ngIf="event.endTime; then done; else inProgress"></ng-container>
 				<ng-template #done>
-					{{ datum.duration | duration }}
+					{{ event.duration | duration }}
 				</ng-template>
 				<ng-template #inProgress>
 					<mark>
-						<!--{{ datum | json }}-->
-						{{ datum.duration | duration }}
+						{{ event.duration | duration }}
 					</mark>
 				</ng-template>
 			</ng-template>
@@ -39,7 +38,16 @@
 				<icon iconName="info"></icon>
 			</ng-template>
 		</td>
-		<td>{{ datum.description }}</td>
+		<td>
+			<span *ngFor="let word of (event.description.split(' '))">
+				<ng-container *ngIf=" ! word.startsWith('#'); else tag">
+					{{ word }}
+				</ng-container>
+				<ng-template #tag>
+					<inline-tag [asWritten]="word" [tagData]="event.tags"></inline-tag>
+				</ng-template>
+			</span>
+		</td>
 	</tr>
 </table>
 

@@ -3,22 +3,24 @@ import {TimelineEvent} from "../timeline-event";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-day-view',
-  templateUrl: './day-view.component.html',
-  styleUrls: ['./day-view.component.css']
+	selector: 'app-day-view',
+	templateUrl: './day-view.component.html',
+	styleUrls: ['./day-view.component.css']
 })
-export class DayViewComponent implements OnInit {
+export class DayViewComponent implements OnInit
+{
 
 	date = new Date();
-	data: Array<TimelineEvent> = [];
+	events: Array<TimelineEvent> = [];
+	theThing: string = "Thing: <inline-tag></inline-tag><inline-tag></inline-tag>";
 
-	constructor(private route: ActivatedRoute, private router: Router) {
-	}
+	constructor(private route: ActivatedRoute, private router: Router) { }
 
-	ngOnInit(): void {
-		this.route.data.subscribe(d =>{
+	ngOnInit(): void
+	{
+		this.route.data.subscribe(d => {
 			console.log(d);
-			this.data = d['dayData'];
+			this.events = d['dayData']['events'];
 		});
 		this.route.paramMap.subscribe((params) => {
 			let dp: string = params.get("date");
@@ -39,7 +41,7 @@ export class DayViewComponent implements OnInit {
 	onDateChanged(event: string): void
 	{
 		// console.log(event);
-		if( ! event || event === "")
+		if (!event || event === "")
 			event = "today";
 		this.router.navigate(["/day", event])
 	}
