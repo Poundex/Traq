@@ -19,7 +19,9 @@ export class InlineTagComponent implements OnInit
 
 	ngOnInit()
 	{
-		let findMe: string = this.asWritten.substr(1).toLowerCase();
+		let findMe: string = this.asWritten.toLowerCase();
+		if(findMe.startsWith('#'))
+			findMe = findMe.substr(1);
 		console.log(this.tagData, findMe);
 		this.tag = this.tagData.find(t => t.name === findMe);
 	}

@@ -29,7 +29,7 @@ class DtoService
 		return toDtos(source, target, [:])
 	}
 
-	public  <T extends Dto> Iterable<T> toDtos(Collection<?> source, Class<T> target, Map<Class<?>, Class<T>> typeMap)
+	public  <T extends Dto> Iterable<T> toDtos(Collection<?> source, Class<T> target, Map<Class<?>, Class<? extends T>> typeMap)
 	{
 		return source.collect { Object it -> toDto(it, typeMap[it.getClass()] ?: target) }
 	}

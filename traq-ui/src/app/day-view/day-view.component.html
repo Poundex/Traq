@@ -6,13 +6,14 @@
 	</form>
 </div>
 <br>
-<table class="table">
+<div class="row">
+<table class="table col-9">
 	<tr>
 		<th class="col-2">Time</th>
 		<th class="col-1"></th>
 		<th class="col">Description</th>
 	</tr>
-	<tr *ngFor="let event of events">
+	<tr *ngFor="let event of day.events">
 		<td>
 			{{ event.startTime }}
 			<ng-container *ngIf="event.endTime">
@@ -50,7 +51,10 @@
 		</td>
 	</tr>
 </table>
-
+	<div class="col">
+		<app-day-stats [day]="day"></app-day-stats>
+	</div>
+</div>
 
 <button class="btn btn-primary" [routerLink]="['/addSpan', date.toISOString().substr(0, 10)]">Add Span</button>
 <button class="btn btn-primary" [routerLink]="['/addPoint', date.toISOString().substr(0, 10)]">Add Point</button>

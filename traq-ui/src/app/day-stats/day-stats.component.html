@@ -1,0 +1,22 @@
+<div class="card stats">
+	<table class="table table-sm table-borderless">
+		<tr>
+			<th>Duration (T)</th>
+			<td>{{ day.durationTotal | duration }}</td>
+		</tr>
+		<tr>
+			<th>Duration (A)</th>
+			<td>{{ day.durationAccountable | duration }}</td>
+		</tr>
+		<tr>
+			<th>Duration (P)</th>
+			<td>{{ day.durationProductive | duration }}</td>
+		</tr>
+	</table>
+	<table class="table table-sm table-striped">
+		<tr *ngFor="let tag of day.tagSummary.tagSummaryEntries">
+			<th><inline-tag [asWritten]="tag.tag.name" [tagData]="[tag.tag]"></inline-tag></th>
+			<td>{{ tag.duration | duration }}</td>
+		</tr>
+	</table>
+</div>

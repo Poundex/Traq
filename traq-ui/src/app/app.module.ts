@@ -16,6 +16,7 @@ import { AddPointFormComponent } from './add-point-form/add-point-form.component
 import { AddEventFormComponent } from './add-event-form/add-event-form.component';
 import { FeatherIconComponent } from './feather-icon/feather-icon.component';
 import { InlineTagComponent } from './inline-tag/inline-tag.component';
+import { DayStatsComponent } from './day-stats/day-stats.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { InlineTagComponent } from './inline-tag/inline-tag.component';
     AddEventFormComponent,
     FeatherIconComponent,
     InlineTagComponent,
+    DayStatsComponent,
   ],
   imports: [
     BrowserModule,

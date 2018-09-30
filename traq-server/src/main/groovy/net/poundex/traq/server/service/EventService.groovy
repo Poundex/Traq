@@ -3,6 +3,7 @@ package net.poundex.traq.server.service
 import groovy.transform.CompileStatic
 import net.poundex.traq.server.dao.TimelineEventRepository
 import net.poundex.traq.server.dao.TimelineSpanRepository
+import net.poundex.traq.server.domain.Tag
 import net.poundex.traq.server.domain.TimelineEvent
 import net.poundex.traq.server.domain.TimelineSpan
 import org.springframework.stereotype.Service
@@ -43,5 +44,16 @@ class EventService
 		timelineEvent.tags.addAll(tagService.findOrCreateAllByText(tagTexts))
 		timelineEventRepository.save(timelineEvent)
 		return timelineEvent
+	}
+
+	Map<Tag, Long> getTags(List<TimelineSpan> events)
+	{
+		Map<Tag, Long> r = [:].withDefault { 0 }
+		events.each { event ->
+			event.tags.each { tag ->
+				r[tag] += event.duration
+			}
+		}
+		return r
 	}
 }

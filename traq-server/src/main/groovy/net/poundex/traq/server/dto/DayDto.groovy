@@ -9,4 +9,8 @@ class DayDto implements Dto
 {
 	LocalDate date
 	Iterable<TimelineEventDto> events
+	TagSummary tagSummary
+	Long durationTotal
+	Long durationAccountable
+	Long durationProductive
 }

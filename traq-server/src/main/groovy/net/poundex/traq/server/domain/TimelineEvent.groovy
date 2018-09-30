@@ -22,4 +22,11 @@ abstract class TimelineEvent
 
 	@ManyToMany
 	Set<Tag> tags = new HashSet<>()
+
+	boolean hasTag(String name)
+	{
+		tags.find {
+			it.name == name || it.hasTag(name)
+		}
+	}
 }

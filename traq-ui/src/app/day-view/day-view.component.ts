@@ -1,6 +1,6 @@
-import {Component, OnInit, SimpleChange} from '@angular/core';
-import {TimelineEvent} from "../timeline-event";
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {Day} from "../day";
 
 @Component({
 	selector: 'app-day-view',
@@ -11,8 +11,7 @@ export class DayViewComponent implements OnInit
 {
 
 	date = new Date();
-	events: Array<TimelineEvent> = [];
-	theThing: string = "Thing: <inline-tag></inline-tag><inline-tag></inline-tag>";
+	day: Day;
 
 	constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -20,7 +19,7 @@ export class DayViewComponent implements OnInit
 	{
 		this.route.data.subscribe(d => {
 			console.log(d);
-			this.events = d['dayData']['events'];
+			this.day = d['dayData'];
 		});
 		this.route.paramMap.subscribe((params) => {
 			let dp: string = params.get("date");
