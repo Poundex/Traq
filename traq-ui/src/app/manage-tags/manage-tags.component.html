@@ -1,0 +1,14 @@
+<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Meta Tags</th>
+		<th>&nbsp;</th>
+	</tr>
+	<tr *ngFor="let tag of tags">
+		<td>{{ tag.name }}</td>
+		<td>{{ tag.description }}</td>
+		<td>...</td>
+		<td><button class="btn btn-outline-secondary" [routerLink]="['/manage/tags/edit/', tag.id]"><icon iconName="edit"></icon></button></td>
+	</tr>
+</table>

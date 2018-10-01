@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DayDataService } from './day-data.service';
+import { TagDataService } from './tag-data.service';
 
-describe('DayDataService', () => {
+describe('TagDataService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DayDataService = TestBed.get(DayDataService);
+    const service: TagDataService = TestBed.get(TagDataService);
     expect(service).toBeTruthy();
   });
 });

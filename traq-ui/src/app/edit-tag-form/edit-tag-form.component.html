@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input class="form-control" id="name" name="eventdate" [(ngModel)]="tag.name" required>
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<input class="form-control" id="description" name="eventstarttime" [(ngModel)]="tag.description" required>
+	</div>
+	<button type="submit" class="btn btn-primary" [disabled]=" ! eventForm.valid">Submit</button>
+</form>

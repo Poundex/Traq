@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {DataService} from "../data.service";
+import {DayDataService} from "../day-data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TimelineEvent} from "../timeline-event";
 
@@ -15,7 +15,7 @@ export class AddEventFormComponent implements OnInit
 	@Input()
 	span: boolean;
 
-	constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute)
+	constructor(private dataService: DayDataService, private router: Router, private route: ActivatedRoute)
 	{
 		let now: Date = new Date();
 		this.timelineEvent = {

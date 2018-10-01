@@ -8,7 +8,7 @@ import {Day} from "./day";
 @Injectable({
 	providedIn: 'root'
 })
-export class DataService implements Resolve<Day>
+export class DayDataService implements Resolve<Day>
 {
 	constructor(private http: HttpClient) { }
 
