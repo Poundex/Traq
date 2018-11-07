@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TagDataService} from "../tag-data.service";
 import { switchMap } from 'rxjs/operators';
+import {Tag} from "../timeline-event";
 
 @Component({
 	selector: 'app-edit-tag-form',
@@ -10,7 +11,9 @@ import { switchMap } from 'rxjs/operators';
 })
 export class EditTagFormComponent implements OnInit
 {
-	constructor(private activatedRoute: ActivatedRoute, private tagDataService: TagDataService) { }
+	public tag: Tag = { id: null, name: "", description: "", metaTags: [] };
+
+	constructor(private activatedRoute: ActivatedRoute, private tagDataService: TagDataService, private router: Router) { }
 
 	ngOnInit()
 	{
@@ -18,8 +21,15 @@ export class EditTagFormComponent implements OnInit
 			let id = params.get("id");
 			if(id) return this.tagDataService.getTag(+id);
 		})).subscribe(tag => {
-			console.log(tag);
+			this.tag = tag;
 		});
 	}
 
+	onSubmit(): void
+	{
+		this.tagDataService.updateTag(this.tag).subscribe((val) => {
+			console.log("The val: ", val);
+			return this.router.navigate(["/manage/tags"]);
+		});
+	}
 }

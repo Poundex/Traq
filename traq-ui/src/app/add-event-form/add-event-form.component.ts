@@ -21,7 +21,8 @@ export class AddEventFormComponent implements OnInit
 		this.timelineEvent = {
 			date: "" + now.getFullYear() + "-" + this.padTime(now.getMonth()) + "-" + this.padTime(now.getDate()),
 			startTime: "" + this.padTime(now.getHours()) + ":" + this.padTime(now.getMinutes()),
-			description: null
+			description: null,
+			tags: []
 		};
 
 	}

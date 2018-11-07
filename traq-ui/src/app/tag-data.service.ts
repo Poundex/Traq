@@ -22,4 +22,9 @@ export class TagDataService implements Resolve<Array<Tag>>
 	{
 		return this.http.get<Tag>("http://localhost:8080/tag/" + id);
 	}
+
+	updateTag(tag: Tag): Observable<any>
+	{
+		return this.http.put("http://localhost:8080/tag/" + tag.id, tag);
+	}
 }

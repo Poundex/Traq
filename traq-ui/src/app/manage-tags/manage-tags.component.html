@@ -8,7 +8,9 @@
 	<tr *ngFor="let tag of tags">
 		<td>{{ tag.name }}</td>
 		<td>{{ tag.description }}</td>
-		<td>...</td>
+		<td>
+			<span *ngFor="let mt of tag.metaTags">#{{ mt.name }}&nbsp;</span>
+		</td>
 		<td><button class="btn btn-outline-secondary" [routerLink]="['/manage/tags/edit/', tag.id]"><icon iconName="edit"></icon></button></td>
 	</tr>
 </table>

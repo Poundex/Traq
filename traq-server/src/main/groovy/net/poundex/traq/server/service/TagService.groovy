@@ -24,4 +24,14 @@ class TagService
 		}
 		return found + created
 	}
+
+	Tag updateTag(Tag tag)
+	{
+		List<String> tagTexts = tag.description.findAll("#[A-Za-z0-9_-]+")*.replace('#', '')
+		if(tag.metaTags == null)
+			tag.metaTags = new HashSet<>()
+		tag.metaTags.clear()
+		tag.metaTags.addAll(findOrCreateAllByText(tagTexts))
+		return tagRepository.save(tag)
+	}
 }
