@@ -7,12 +7,14 @@ import net.poundex.traq.server.domain.Tag
 import net.poundex.traq.server.domain.TimelinePoint
 import net.poundex.traq.server.domain.TimelineSpan
 import org.springframework.boot.CommandLineRunner
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
 import java.time.LocalDate
 import java.time.LocalTime
 
 @Component
+@Profile("installTestData")
 class TestDataInstaller implements CommandLineRunner
 {
 	private final TimelineSpanRepository timelineSpanRepository
